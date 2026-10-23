@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="TCRMS development frontend scaffold">
+  <title>TCRMS | Records Management</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./config.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#" aria-label="TCRMS home">
+        <span class="brand-mark">T</span>
+        <span><strong>TCRMS</strong><small>Records Management</small></span>
+      </a>
+      <div class="nav-label">WORKSPACE</div>
+      <a class="nav-item active" href="#overview"><span class="nav-icon">▦</span> Overview</a>
+      <div class="nav-item disabled" aria-disabled="true"><span class="nav-icon">▤</span> Case records <span class="soon">Planned</span></div>
+      <div class="nav-item disabled" aria-disabled="true"><span class="nav-icon">♙</span> Person records <span class="soon">Planned</span></div>
+      <div class="nav-item disabled" aria-disabled="true"><span class="nav-icon">◷</span> Audit trail <span class="soon">Planned</span></div>
+      <div class="sidebar-bottom">
+        <span class="status-dot"></span>
+        <div><strong>Development mode</strong><small>No operational data</small></div>
+      </div>
+    </aside>
+
+    <main class="main-content" id="overview">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">TANZANIA · RECORDS PLATFORM</p>
+          <h1>Workspace overview</h1>
+        </div>
+        <span class="environment-badge">SCAFFOLD · NOT PRODUCTION</span>
+      </header>
+
+      <section class="notice" role="note">
+        <span class="notice-icon">i</span>
+        <div><strong>Foundation stage</strong><p>This interface contains no real person, case, or conviction records. Protected modules remain disabled until authentication, permissions, and governance controls are designed and reviewed.</p></div>
+      </section>
+
+      <section class="welcome">
+        <div>
+          <p class="eyebrow">SYSTEM FOUNDATION</p>
+          <h2>Build with accountability.<br><span>Protect every record.</span></h2>
+          <p class="welcome-copy">A secure-by-default starting point for an authorised records management platform.</p>
+        </div>
+        <div class="abstract-art" aria-hidden="true"><div class="art-ring ring-one"></div><div class="art-ring ring-two"></div><div class="art-core">T</div></div>
+      </section>
+
+      <section class="section-heading"><div><p class="eyebrow">SYSTEM STATUS</p><h2>Service connectivity</h2></div></section>
+      <article class="status-card">
+        <div class="service-icon">API</div>
+        <div class="service-info"><h3>Spring Boot REST API</h3><p id="api-status">Not checked yet. Start the backend, then check connectivity.</p></div>
+        <button id="check-api" class="primary-button" type="button">Check API</button>
+      </article>
+      <p id="status-message" class="status-message" aria-live="polite"></p>
+
+      <footer><span>TCRMS · Development scaffold</span><span>Access controls are not yet production-ready.</span></footer>
+    </main>
+  </div>
+</body>
+</html>
