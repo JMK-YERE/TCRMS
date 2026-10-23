@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json.schemastore.org/wrangler",
+  "name": "tcrms",
+  "main": "./worker/index.js",
+  "compatibility_date": "2026-10-24",
+  "assets": {
+    "directory": "./frontend",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  }
+}
