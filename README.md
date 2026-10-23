@@ -7,7 +7,7 @@ TCRMS is being developed as a separate HTML/CSS/JavaScript frontend and a Spring
 ## Repository layout
 
 - `backend/` — Java 21, Spring Boot 3.5, REST API, Spring Security, PostgreSQL, Flyway.
-- `frontend/` — static HTML, CSS and JavaScript prototype.
+- `frontend/` — login-only HTML/CSS/JavaScript interface using a blue and white theme; no public landing page.
 - `.github/workflows/verify.yml` — CI build/test workflow.
 
 ## Local prerequisites
@@ -33,7 +33,7 @@ mvn -f backend/pom.xml test
 mvn -f backend/pom.xml spring-boot:run
 ```
 
-The public health endpoint is `GET http://localhost:8080/api/v1/health`. All other API paths are protected by default. Authentication and role provisioning are not implemented yet, so protected endpoints are intentionally not usable at this stage.
+The public health endpoint is `GET http://localhost:8080/api/v1/health`. All other API paths are protected by default. **Login is currently a visual frontend only:** authentication endpoints, account provisioning, password reset, MFA, and role-based authorisation have not been implemented. Do not use the form for real accounts yet.
 
 Serve `frontend/` at `http://localhost:5500` and open its `index.html`.
 

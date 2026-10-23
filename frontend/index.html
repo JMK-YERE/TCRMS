@@ -1,65 +1,9 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="TCRMS development frontend scaffold">
-  <title>TCRMS | Records Management</title>
-  <link rel="stylesheet" href="./styles.css">
-  <script src="./config.js" defer></script>
-  <script src="./app.js" defer></script>
-</head>
-<body>
-  <div class="app-shell">
-    <aside class="sidebar" aria-label="Main navigation">
-      <a class="brand" href="#" aria-label="TCRMS home">
-        <span class="brand-mark">T</span>
-        <span><strong>TCRMS</strong><small>Records Management</small></span>
-      </a>
-      <div class="nav-label">WORKSPACE</div>
-      <a class="nav-item active" href="#overview"><span class="nav-icon">▦</span> Overview</a>
-      <div class="nav-item disabled" aria-disabled="true"><span class="nav-icon">▤</span> Case records <span class="soon">Planned</span></div>
-      <div class="nav-item disabled" aria-disabled="true"><span class="nav-icon">♙</span> Person records <span class="soon">Planned</span></div>
-      <div class="nav-item disabled" aria-disabled="true"><span class="nav-icon">◷</span> Audit trail <span class="soon">Planned</span></div>
-      <div class="sidebar-bottom">
-        <span class="status-dot"></span>
-        <div><strong>Development mode</strong><small>No operational data</small></div>
-      </div>
-    </aside>
-
-    <main class="main-content" id="overview">
-      <header class="topbar">
-        <div>
-          <p class="eyebrow">TANZANIA · RECORDS PLATFORM</p>
-          <h1>Workspace overview</h1>
-        </div>
-        <span class="environment-badge">SCAFFOLD · NOT PRODUCTION</span>
-      </header>
-
-      <section class="notice" role="note">
-        <span class="notice-icon">i</span>
-        <div><strong>Foundation stage</strong><p>This interface contains no real person, case, or conviction records. Protected modules remain disabled until authentication, permissions, and governance controls are designed and reviewed.</p></div>
-      </section>
-
-      <section class="welcome">
-        <div>
-          <p class="eyebrow">SYSTEM FOUNDATION</p>
-          <h2>Build with accountability.<br><span>Protect every record.</span></h2>
-          <p class="welcome-copy">A secure-by-default starting point for an authorised records management platform.</p>
-        </div>
-        <div class="abstract-art" aria-hidden="true"><div class="art-ring ring-one"></div><div class="art-ring ring-two"></div><div class="art-core">T</div></div>
-      </section>
-
-      <section class="section-heading"><div><p class="eyebrow">SYSTEM STATUS</p><h2>Service connectivity</h2></div></section>
-      <article class="status-card">
-        <div class="service-icon">API</div>
-        <div class="service-info"><h3>Spring Boot REST API</h3><p id="api-status">Not checked yet. Start the backend, then check connectivity.</p></div>
-        <button id="check-api" class="primary-button" type="button">Check API</button>
-      </article>
-      <p id="status-message" class="status-message" aria-live="polite"></p>
-
-      <footer><span>TCRMS · Development scaffold</span><span>Access controls are not yet production-ready.</span></footer>
-    </main>
-  </div>
-</body>
-</html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="TCRMS secure sign-in"><meta name="theme-color" content="#1557b0"><title>Sign in | TCRMS</title><link rel="stylesheet" href="./styles.css"><script src="./config.js" defer></script><script src="./app.js" defer></script></head>
+<body><main class="login-page"><section class="login-card" aria-labelledby="login-title">
+<header class="brand"><div class="brand-mark" aria-hidden="true">T</div><div class="brand-copy"><p class="brand-name">TCRMS</p><p class="brand-subtitle">Tanzania Criminal Record Management System</p></div></header>
+<div class="login-heading"><p class="eyebrow">AUTHORISED ACCESS ONLY</p><h1 id="login-title">Sign in to your account</h1><p class="intro">Use your assigned account to access the records system.</p></div>
+<form id="login-form" novalidate><label for="username">Official email or username</label><input id="username" name="username" type="text" autocomplete="username" placeholder="Enter your official email or username" required maxlength="150"><label for="password">Password</label><div class="password-wrap"><input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required maxlength="256"><button id="toggle-password" class="password-toggle" type="button" aria-label="Show password" aria-pressed="false">Show</button></div><button id="sign-in" class="primary-button" type="submit">Sign in <span aria-hidden="true">→</span></button><p id="login-message" class="login-message" role="status" aria-live="polite"></p></form>
+<div class="security-note"><span class="lock-icon" aria-hidden="true">⌑</span><p><strong>Protected system</strong><br>Access is intended for authorised personnel. Activity monitoring and account controls must be configured before operational use.</p></div><footer class="login-footer"><span>© TCRMS · Development version</span><span>Need access? Contact your system administrator.</span></footer>
+</section></main></body></html>

@@ -1,42 +1,28 @@
 (() => {
-  const button = document.getElementById("check-api");
-  const status = document.getElementById("api-status");
-  const message = document.getElementById("status-message");
+  const form = document.getElementById("login-form");
+  const username = document.getElementById("username");
+  const password = document.getElementById("password");
+  const toggle = document.getElementById("toggle-password");
+  const message = document.getElementById("login-message");
+  if (!form || !username || !password || !toggle || !message) return;
 
-  if (!button || !status || !message) return;
+  toggle.addEventListener("click", () => {
+    const show = password.type === "password";
+    password.type = show ? "text" : "password";
+    toggle.textContent = show ? "Hide" : "Show";
+    toggle.setAttribute("aria-label", show ? "Hide password" : "Show password");
+    toggle.setAttribute("aria-pressed", String(show));
+  });
 
-  button.addEventListener("click", async () => {
-    const baseUrl = window.TCRMS_CONFIG?.API_BASE_URL;
-    if (!baseUrl) {
-      status.textContent = "API URL is not configured.";
-      message.textContent = "Set API_BASE_URL in frontend/config.js.";
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    message.textContent = "";
+    if (!username.value.trim() || !password.value) {
+      message.textContent = "Enter your username and password.";
+      (!username.value.trim() ? username : password).focus();
       return;
     }
-
-    button.disabled = true;
-    button.textContent = "Checking…";
-    status.textContent = "Contacting the local API…";
-    message.textContent = "";
-
-    try {
-      const response = await fetch(`${baseUrl.replace(/\/$/, "")}/api/v1/health`, {
-        method: "GET",
-        headers: { "Accept": "application/json" },
-        cache: "no-store"
-      });
-
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const result = await response.json();
-      if (result.status !== "UP") throw new Error("Unexpected health response");
-
-      status.textContent = "API responded successfully.";
-      message.textContent = `${result.application}: ${result.status}. This is only a liveness check, not a security or database-readiness test.`;
-    } catch (error) {
-      status.textContent = "API could not be reached.";
-      message.textContent = "Start the backend, check its API URL, and verify CORS settings. No system data was requested.";
-    } finally {
-      button.disabled = false;
-      button.textContent = "Check API";
-    }
+    // Do not simulate a successful sign-in. The backend authentication flow is not implemented yet.
+    message.textContent = "Sign-in is not connected yet. The authentication API must be implemented before accounts can be used.";
   });
 })();
