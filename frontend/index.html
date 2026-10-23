@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="TCRMS secure sign-in"><meta name="theme-color" content="#1557b0"><title>Sign in | TCRMS</title><link rel="stylesheet" href="./styles.css"><script src="./config.js" defer></script><script src="./app.js" defer></script></head>
+<body><main class="login-page"><section class="login-card" aria-labelledby="login-title">
+<header class="brand"><div class="brand-mark" aria-hidden="true">T</div><div class="brand-copy"><p class="brand-name">TCRMS</p><p class="brand-subtitle">Tanzania Criminal Record Management System</p></div></header>
+<div class="login-heading"><p class="eyebrow">AUTHORISED ACCESS ONLY</p><h1 id="login-title">Sign in to your account</h1><p class="intro">Use your assigned account to access the records system.</p></div>
+<form id="login-form" novalidate><label for="username">Official email or username</label><input id="username" name="username" type="text" autocomplete="username" placeholder="Enter your official email or username" required maxlength="150"><label for="password">Password</label><div class="password-wrap"><input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required maxlength="256"><button id="toggle-password" class="password-toggle" type="button" aria-label="Show password" aria-pressed="false">Show</button></div><button id="sign-in" class="primary-button" type="submit">Sign in <span aria-hidden="true">→</span></button><p id="login-message" class="login-message" role="status" aria-live="polite"></p></form>
+<div class="security-note"><span class="lock-icon" aria-hidden="true">⌑</span><p><strong>Protected system</strong><br>Access is intended for authorised personnel. Authentication, activity monitoring and account controls must be configured before operational use.</p></div>
+<p class="preview-link"><a href="./dashboard-preview.html">Open dashboard preview (sample data only)</a></p>
+<footer class="login-footer"><span>© TCRMS · Development version</span><span>Need access? Contact your system administrator.</span></footer>
+</section></main></body></html>
