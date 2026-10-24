@@ -23,3 +23,10 @@
 
 /* Keep login and workspace on one navy, gold, and slate design system. */
 @media(max-width:800px){.ribbon-secure{display:none}}
+
+.status-update{margin-top:22px;padding:18px;border:1px solid #dce3ed;border-radius:9px;background:#f7f9fc}
+.status-update>label{display:block;font-size:12px;font-weight:800;color:var(--navy);margin-bottom:9px}
+.status-update-row{display:flex;gap:10px;align-items:center}
+.status-update-row select{flex:1;min-width:0;min-height:42px;border:1px solid #cbd5e1;border-radius:7px;background:#fff;color:var(--ink);padding:9px 11px}
+.status-update .inline-message{margin-bottom:0}
+@media(max-width:520px){.status-update-row{align-items:stretch;flex-direction:column}.status-update-row .primary-button{width:100%}}
