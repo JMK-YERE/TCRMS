@@ -1,4 +1,2 @@
-// Local development configuration only. Do not place secrets in frontend files.
-window.TCRMS_CONFIG = Object.freeze({
-  API_BASE_URL: "http://localhost:8080"
-});
+// Same-origin API by default. No credentials or secrets belong in this file.
+window.TCRMS_CONFIG = Object.freeze({ API_BASE_URL: "", token: "" });
