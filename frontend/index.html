@@ -7,13 +7,13 @@
 <link rel="stylesheet" href="./styles.css"><script src="./config.js" defer></script><script src="./app.js" defer></script>
 </head>
 <body>
-<div class="login-ribbon">TCRMS · AUTHORISED ACCESS ONLY</div>
+<div class="login-ribbon"><span class="ribbon-mark" aria-hidden="true"></span><span>TCRMS <span class="ribbon-divider">/</span> AUTHORISED ACCESS ONLY</span><span class="ribbon-secure">SECURE ACCESS</span></div>
 <main id="login-view" class="login-page">
 <section class="login-card" aria-labelledby="login-title">
-<header class="brand"><div class="brand-mark" aria-hidden="true">T</div><div class="brand-copy"><p class="brand-name">TCRMS</p><p class="brand-subtitle">Tanzania Criminal Record Management System</p></div></header>
-<div class="login-heading"><p class="eyebrow">SECURE WORKSPACE</p><h1 id="login-title">Sign in to your account</h1><p class="intro">Use your assigned account. Access is logged and controlled by your role.</p></div>
+<header class="brand"><div class="brand-mark" aria-hidden="true">T<span class="brand-mark-accent"></span></div><div class="brand-copy"><p class="brand-name">TCRMS</p><p class="brand-subtitle">Tanzania Criminal Record Management System</p></div></header>
+<div class="login-heading"><p class="eyebrow"><span class="eyebrow-rule"></span> SECURE WORKSPACE</p><h1 id="login-title">Sign in to your account</h1><p class="intro">Use your assigned account. Access is logged and controlled by your role.</p></div>
 <form id="login-form" novalidate><label for="username">Official username</label><input id="username" name="username" type="text" autocomplete="username" placeholder="Enter your official username" required maxlength="150"><label for="password">Password</label><div class="password-wrap"><input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required maxlength="256"><button id="toggle-password" class="password-toggle" type="button" aria-label="Show password" aria-pressed="false">Show</button></div><button id="sign-in" class="primary-button" type="submit">Sign in <span aria-hidden="true">→</span></button><p id="login-message" class="login-message" role="status" aria-live="polite"></p></form>
-<div class="security-note"><span class="lock-icon" aria-hidden="true">⌑</span><p><strong>Restricted information</strong><br>Only use an authorised account. Never enter real records until the approved database, access policy, and institutional security controls are in place.</p></div>
+<div class="security-note"><span class="lock-icon" aria-hidden="true">◆</span><p><strong>Restricted information</strong><br>Only use an authorised account. Never enter real records until the approved database, access policy, and institutional security controls are in place.</p></div>
 <footer class="login-footer"><span>© TCRMS · Secure development environment</span><span>For account access, contact your system administrator.</span></footer>
 </section></main>
 
