@@ -1,0 +1,15 @@
+{
+  "name": "tcrms",
+  "private": true,
+  "version": "0.2.0",
+  "type": "module",
+  "scripts": {
+    "check": "node --check worker/index.js"
+  },
+  "dependencies": {
+    "postgres": "^3.4.7"
+  },
+  "devDependencies": {
+    "wrangler": "^4.45.0"
+  }
+}
