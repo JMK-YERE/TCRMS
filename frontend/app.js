@@ -34,8 +34,13 @@
       if (r.status === 401) return logout("Your session expired. Sign in again.");
       if (!r.ok) throw new Error(data.message || "Unable to open record.");
       const rec = data.record;
-      const detail = ["Case: "+rec.case_reference, "Name: "+rec.full_name, "Date of birth: "+(rec.date_of_birth || "Not provided"), "Status: "+rec.record_status, "Summary: "+rec.summary].join("\n");
-      window.alert(detail);
+      $("detail-reference").textContent = rec.case_reference || "—";
+      $("detail-name").textContent = rec.full_name || "—";
+      $("detail-dob").textContent = date(rec.date_of_birth);
+      $("detail-status").textContent = (rec.record_status || "—").replaceAll("_", " ");
+      $("detail-summary").textContent = rec.summary || "No summary recorded.";
+      $("record-detail-dialog").hidden = false;
+      $("close-record-detail").focus();
     } catch (e) { setMessage("records-message", e.message, true); }
   }
   async function loadAudit() {
@@ -83,6 +88,9 @@
   $("next-page").addEventListener("click", () => { state.offset += state.limit; loadRecords(); });
   $("records-body").addEventListener("click", (event) => { const button = event.target.closest("[data-record-id]"); if (button) viewRecord(button.dataset.recordId); });
   $("refresh-audit").addEventListener("click", loadAudit);
+  $("close-record-detail").addEventListener("click", () => { $("record-detail-dialog").hidden = true; });
+  $("record-detail-dialog").addEventListener("click", (event) => { if (event.target === $("record-detail-dialog")) $("record-detail-dialog").hidden = true; });
+  document.addEventListener("keydown", (event) => { if (event.key === "Escape") $("record-detail-dialog").hidden = true; });
   $("new-record-form").addEventListener("submit", async (event) => {
     event.preventDefault(); const button = $("create-record-button"); button.disabled = true; setMessage("create-message", "Saving record…");
     const body = Object.fromEntries(new FormData(event.currentTarget).entries());
