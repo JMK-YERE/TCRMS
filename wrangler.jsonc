@@ -3,6 +3,13 @@
   "name": "tcrms",
   "main": "./worker/index.js",
   "compatibility_date": "2026-10-24",
+  "compatibility_flags": ["nodejs_compat"],
+  "hyperdrive": [
+    {
+      "binding": "HYPERDRIVE",
+      "id": "0dd3647aad2a401c924a370afeac8cab"
+    }
+  ],
   "assets": {
     "directory": "./frontend",
     "binding": "ASSETS",
