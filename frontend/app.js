@@ -38,6 +38,10 @@
       $("detail-name").textContent = rec.full_name || "—";
       $("detail-dob").textContent = date(rec.date_of_birth);
       $("detail-status").textContent = (rec.record_status || "—").replaceAll("_", " ");
+      $("detail-status-select").value = rec.record_status || "PENDING";
+      $("save-record-status").dataset.recordId = rec.id;
+      $("save-record-status").hidden = !["ADMIN", "RECORDS_OFFICER"].includes(state.user.role);
+      setMessage("detail-status-message", "");
       $("detail-summary").textContent = rec.summary || "No summary recorded.";
       $("record-detail-dialog").hidden = false;
       $("close-record-detail").focus();
@@ -88,6 +92,21 @@
   $("next-page").addEventListener("click", () => { state.offset += state.limit; loadRecords(); });
   $("records-body").addEventListener("click", (event) => { const button = event.target.closest("[data-record-id]"); if (button) viewRecord(button.dataset.recordId); });
   $("refresh-audit").addEventListener("click", loadAudit);
+  $("save-record-status").addEventListener("click", async () => {
+    const button = $("save-record-status"), id = button.dataset.recordId, status = $("detail-status-select").value;
+    if (!id) return;
+    button.disabled = true; setMessage("detail-status-message", "Saving status…");
+    try {
+      const r = await api("/api/v1/records/" + encodeURIComponent(id), { method: "PATCH", body: JSON.stringify({ status }) });
+      const data = await r.json();
+      if (r.status === 401) return logout("Your session expired. Sign in again.");
+      if (!r.ok) throw new Error(data.message || "Status could not be updated.");
+      $("detail-status").textContent = data.record.record_status.replaceAll("_", " ");
+      setMessage("detail-status-message", "Status updated and recorded in the audit trail.");
+      loadRecords();
+    } catch (e) { setMessage("detail-status-message", e.message, true); }
+    finally { button.disabled = false; }
+  });
   $("close-record-detail").addEventListener("click", () => { $("record-detail-dialog").hidden = true; });
   $("record-detail-dialog").addEventListener("click", (event) => { if (event.target === $("record-detail-dialog")) $("record-detail-dialog").hidden = true; });
   document.addEventListener("keydown", (event) => { if (event.key === "Escape") $("record-detail-dialog").hidden = true; });
