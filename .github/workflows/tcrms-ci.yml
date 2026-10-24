@@ -1,0 +1,19 @@
+name: TCRMS checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  worker-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: bun install
+      - run: bun run check
+      - run: npx wrangler deploy --dry-run
