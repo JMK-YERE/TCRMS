@@ -76,7 +76,7 @@ const validText = (value, max) => typeof value === "string" && value.trim().leng
 
 async function routeApi(request, env, url) {
   if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: {
-    "access-control-allow-methods": "GET, POST, OPTIONS", "access-control-allow-headers": "Content-Type, Authorization, X-Bootstrap-Secret",
+    "access-control-allow-methods": "GET, POST, PATCH, OPTIONS", "access-control-allow-headers": "Content-Type, Authorization, X-Bootstrap-Secret",
     "access-control-max-age": "600", "vary": "Origin",
   }});
   if (request.method === "GET" && url.pathname === "/api/v1/health") {
@@ -195,6 +195,19 @@ async function routeApi(request, env, url) {
       if (!rows[0]) return fail(404, "not_found", "Record not found.");
       await audit(sql, user, "VIEW_RECORD", "record", rows[0].id, request, { caseReference: rows[0].case_reference });
       return json({ record: rows[0] });
+    }
+    if (match && request.method === "PATCH") {
+      if (!canWriteRecords(user.role)) return fail(403, "forbidden", "Your role cannot update records.");
+      let body; try { body = await request.json(); } catch { return fail(400, "invalid_json", "Request body must be valid JSON."); }
+      if (!["PENDING", "UNDER_REVIEW", "VERIFIED", "CLOSED"].includes(body.status))
+        return fail(400, "validation_error", "Provide a valid record status.");
+      const previous = await sql`SELECT id, case_reference, record_status FROM tcrms_records WHERE id = ${match[1]} LIMIT 1`;
+      if (!previous[0]) return fail(404, "not_found", "Record not found.");
+      const updated = await sql`UPDATE tcrms_records SET record_status = ${body.status}, updated_by = ${user.id}, updated_at = NOW()
+        WHERE id = ${match[1]} RETURNING id, case_reference, record_status, updated_at`;
+      await audit(sql, user, "UPDATE_RECORD_STATUS", "record", updated[0].id, request,
+        { caseReference: updated[0].case_reference, from: previous[0].record_status, to: updated[0].record_status });
+      return json({ record: updated[0], message: "Record status updated." });
     }
     if (url.pathname === "/api/v1/audit" && request.method === "GET") {
       if (!["ADMIN", "AUDITOR"].includes(user.role)) return fail(403, "forbidden", "Only administrators and auditors can review the audit log.");
